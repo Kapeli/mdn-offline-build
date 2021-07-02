@@ -96,32 +96,32 @@ async function main() {
     const filePaths = fastGlob.sync(path.resolve(documentsFolder, docsWebextensionsSubtree, '**/index.html'));
     postProcess(filePaths, documentsFolder);
 
-    // Create database
-    console.log('Building index...')
-    const apiDocs = fastGlob.sync(
-        path.resolve(tempWebextensionsFolder, '**/*.html')
-    );
+    // // Create database
+    // console.log('Building index...')
+    // const apiDocs = fastGlob.sync(
+    //     path.resolve(tempWebextensionsFolder, '**/*.html')
+    // );
 
-    await new Promise((resolve, reject) => {
-        sqlite3.verbose();
-        const db = new sqlite3.Database(searchIndexFile);
-        db.on('error', (err) => {
-            console.error('Error:', err);
-            reject(err);
-        });
-        // Populate index
-        db.on('open', () => {
-            db.exec(generateSQL(apiDocs), () => {
-                db.close();
-                resolve();
+    // await new Promise((resolve, reject) => {
+    //     sqlite3.verbose();
+    //     const db = new sqlite3.Database(searchIndexFile);
+    //     db.on('error', (err) => {
+    //         console.error('Error:', err);
+    //         reject(err);
+    //     });
+    //     // Populate index
+    //     db.on('open', () => {
+    //         db.exec(generateSQL(apiDocs), () => {
+    //             db.close();
+    //             resolve();
 
-            });
-        });
-    });
+    //         });
+    //     });
+    // });
 
-    // Archive
-    console.log('Packing...')
-    execSync(`tar --exclude='.DS_Store' -cvzf WebExtensions.tgz webextensions.docset`, { stdio: ['pipe', 'ignore', 'pipe'] });
+    // // Archive
+    // console.log('Packing...')
+    // execSync(`tar --exclude='.DS_Store' -cvzf WebExtensions.tgz webextensions.docset`, { stdio: ['pipe', 'ignore', 'pipe'] });
 
     console.log('Done!');
 }
