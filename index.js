@@ -7,8 +7,8 @@ const execSync = require('child_process').execSync;
 const { buildIndex } = require('./build/build-index');
 const postProcess = require('./build/post-process');
 
-const webextensionsSubtree = 'en-us/mozilla/add-ons/webextensions';
-const docsWebextensionsSubtree = 'en-us/docs/mozilla/add-ons/webextensions';
+const webextensionsSubtree = 'en-us';
+const docsWebextensionsSubtree = 'en-us/docs';
 const mdnContentFolder = path.resolve(__dirname, 'mdn/content/files');
 const webextensionsContentFolder = path.resolve(mdnContentFolder, webextensionsSubtree);
 
