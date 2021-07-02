@@ -120,7 +120,7 @@ function buildTableOfContents(dom, filePath) {
             return;
         }
 
-        node.nextSibling.querySelectorAll('dt').forEach(apiNode => {
+        node.nextElementSibling.querySelectorAll('dt').forEach(apiNode => {
             const code = apiNode.querySelector('code');
             if (!code || apiNode.closest('dd')) {
                 // ignore nested entries
